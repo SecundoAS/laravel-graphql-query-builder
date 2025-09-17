@@ -17,7 +17,7 @@ A powerful and elegant GraphQL query builder for PHP, designed specifically for 
 
 ## Requirements
 
-- PHP 8.4 or higher
+- PHP 8.2 or higher
 - Laravel 11.0 or higher
 
 ## Installation

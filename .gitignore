@@ -41,3 +41,4 @@ Thumbs.db
 # Laravel specific
 bootstrap/cache/
 storage/logs/
+.phpunit.cache/test-results

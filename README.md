@@ -1,7 +1,7 @@
 # Laravel GraphQL Query Builder
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/secundo/laravel-graphql-query-builder.svg?style=flat-square)](https://packagist.org/packages/secundo/laravel-graphql-query-builder)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/secundo/laravel-graphql-query-builder/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/secundo/laravel-graphql-query-builder/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/secundo/laravel-graphql-query-builder/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/SecundoAS/laravel-graphql-query-builder/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/secundo/laravel-graphql-query-builder.svg?style=flat-square)](https://packagist.org/packages/secundo/laravel-graphql-query-builder)
 
 A powerful and elegant GraphQL query builder for PHP, designed specifically for Laravel applications. Build GraphQL queries and mutations with a fluent, type-safe interface.
@@ -19,8 +19,8 @@ A powerful and elegant GraphQL query builder for PHP, designed specifically for 
 
 ## Requirements
 
-- PHP 8.1 or higher
-- Laravel 10.0 or higher
+- PHP 8.4 or higher
+- Laravel 11.0 or higher
 
 ## Installation
 
@@ -90,7 +90,7 @@ $query = $builder->query()
 
 ```php
 $query = $builder->query('GetProduct')
-    ->variable('id', 'ID!')
+    ->variable('id', 'ID!', 'gid://shopify/Product/123')
     ->field('product', ['id' => '$id'], ['id', 'title', 'description'])
     ->toGraphQL();
 
@@ -105,6 +105,7 @@ $variables = $builder->getVariableValues();
 //     description
 //   }
 // }
+// Variables: {"id": "gid://shopify/Product/123"}
 ```
 
 ### Mutations
@@ -124,9 +125,7 @@ $mutation = $builder->mutation('UpdateProduct')
 
 ```php
 $query = $builder->query()
-    ->fragment('ProductFields', 'Product', function ($fragment) {
-        $fragment->select(['id', 'title', 'handle', 'createdAt']);
-    })
+    ->fragment('ProductFields', 'Product', ['id', 'title', 'handle', 'createdAt'])
     ->field('products', [], function ($field) {
         $field->field('edges', [], function ($field) {
             $field->field('node', [], ['...ProductFields']);
@@ -201,11 +200,11 @@ $field->alias('myProduct')
 
 ```php
 $field = new Field('expensiveField');
-$field->include('$includeExpensive')  // @include(if: $includeExpensive)
+$field->directive('include', ['if' => '$includeExpensive'])
     ->fields(['data']);
 
 $field = new Field('debugInfo');
-$field->skip('$production')  // @skip(if: $production)
+$field->directive('skip', ['if' => '$production'])
     ->fields(['logs']);
 ```
 
@@ -263,7 +262,7 @@ If you discover a security vulnerability, please send an email to einar@secundo.
 
 ## Credits
 
-- [Secundo Team](https://github.com/secundo)
+- [Secundo Team](https://github.com/SecundoAS)
 - [All Contributors](../../contributors)
 
 ## License

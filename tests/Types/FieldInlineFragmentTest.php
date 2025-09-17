@@ -179,7 +179,7 @@ class FieldInlineFragmentTest extends TestCase
     #[Test]
     public function it_supports_method_chaining_with_inline_fragments(): void
     {
-        $field = new Field('nodes')
+        $field = (new Field('nodes'))
             ->field('id')
             ->inlineFragment('Product', function (InlineFragment $inlineFragment): void {
                 $inlineFragment->field('title');

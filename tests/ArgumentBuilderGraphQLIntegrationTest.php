@@ -179,7 +179,7 @@ class ArgumentBuilderGraphQLIntegrationTest extends TestCase
     #[Test]
     public function it_supports_method_chaining_with_argument_builders(): void
     {
-        $field = new Field('products')
+        $field = (new Field('products'))
             ->argument('first', 20)
             ->queryBuilder(function ($query): void {
                 $query->where('status', 'active');

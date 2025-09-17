@@ -43,7 +43,7 @@ class ArgumentBuilderIntegrationTest extends TestCase
             ->whereIn('status', ['active', 'draft'])
             ->where('created_at', '>', '2020-01-01');
 
-        $argument = new Argument('query', 'initial')
+        $argument = (new Argument('query', 'initial'))
             ->value($builder);
 
         $this->assertEquals('status:active,draft AND created_at:>"2020-01-01"', $argument->getValue());
@@ -68,7 +68,7 @@ class ArgumentBuilderIntegrationTest extends TestCase
             ->search('iPhone')
             ->where('vendor', 'Apple');
 
-        $variable = new Variable('query', 'String')
+        $variable = (new Variable('query', 'String'))
             ->value($builder);
 
         $this->assertEquals('iPhone AND vendor:Apple', $variable->getValue());

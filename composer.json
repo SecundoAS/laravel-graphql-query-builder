@@ -47,8 +47,7 @@
         "format": ["@rector", "@pint"],
         "pint": "./vendor/bin/pint",
         "rector": "./vendor/bin/rector process",
-        "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+        "test": "vendor/bin/phpunit"
     },
     "config": {
         "sort-packages": true,

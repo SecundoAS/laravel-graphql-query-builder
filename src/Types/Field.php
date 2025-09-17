@@ -53,6 +53,11 @@ class Field implements Stringable
         return $this->name;
     }
 
+    public function getAlias(): ?string
+    {
+        return $this->alias;
+    }
+
     public function toArray(): array
     {
         return [

@@ -65,7 +65,8 @@ trait BuildsFieldStrings
                         // Filter out variable references that don't exist
                         if (is_string($argValue) && str_starts_with($argValue, '$')) {
                             $variableName = mb_substr($argValue, 1);
-                            if ($this->hasVariable($variableName)) {
+                            // @phpstan-ignore-next-line function.alreadyNarrowedType
+                            if (method_exists($this, 'hasVariable') && $this->hasVariable($variableName)) {
                                 $argStrings[] = "{$argName}: {$argValue}";
                             }
                         } else {

@@ -19,8 +19,6 @@ class FieldProcessor
         foreach ($fields as $key => $field) {
             if ($field instanceof Field) {
                 $processedFields[] = $field;
-            } elseif ($field instanceof InlineFragment) {
-                $processedFields[] = $field;
             } elseif (is_string($field)) {
                 $processedFields[] = new Field($field);
             } elseif (is_array($field) && is_string($key)) {

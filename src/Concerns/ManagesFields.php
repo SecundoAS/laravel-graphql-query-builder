@@ -74,6 +74,7 @@ trait ManagesFields
 
         if ($fields instanceof Closure) {
             $fields($inlineFragment);
+            // @phpstan-ignore-next-line function.alreadyNarrowedType
         } elseif (is_array($fields) && (! TypeGuards::isFragment($fragment) && ! TypeGuards::isInlineFragment($fragment))) {
             // Only process array fields if we created a new InlineFragment
             $inlineFragment->fields($fields);

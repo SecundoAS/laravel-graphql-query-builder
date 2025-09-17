@@ -7,6 +7,7 @@ namespace Secundo\GraphQL\Concerns;
 use Closure;
 use Secundo\GraphQL\ArgumentBuilder;
 use Secundo\GraphQL\Processors\ArgumentProcessor;
+use Secundo\GraphQL\Types\Argument;
 
 trait ManagesArguments
 {

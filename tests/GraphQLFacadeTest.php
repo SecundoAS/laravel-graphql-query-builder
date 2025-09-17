@@ -12,13 +12,6 @@ use Secundo\GraphQL\GraphQLServiceProvider;
 
 class GraphQLFacadeTest extends TestCase
 {
-    protected static $latestResponse = null;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
     #[Test]
     public function facade_can_create_query(): void
     {

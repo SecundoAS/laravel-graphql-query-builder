@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Secundo\GraphQL;
 
 use Illuminate\Support\ServiceProvider;
+use Override;
 
 class GraphQLServiceProvider extends ServiceProvider
 {
+    #[Override]
     public function register(): void
     {
         $this->app->singleton('graphql-query-builder', fn (): GraphQL => new GraphQL);
@@ -20,6 +22,7 @@ class GraphQLServiceProvider extends ServiceProvider
         // Nothing to boot for a pure query builder
     }
 
+    #[Override]
     public function provides(): array
     {
         return [

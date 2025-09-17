@@ -125,12 +125,27 @@ class TypeGuards
      */
     public static function isGraphQLType(mixed $value): bool
     {
-        return static::isField($value)
-            || static::isInlineFragment($value)
-            || static::isFragment($value)
-            || static::isDirective($value)
-            || static::isArgument($value)
-            || static::isVariable($value);
+        if (static::isField($value)) {
+            return true;
+        }
+
+        if (static::isInlineFragment($value)) {
+            return true;
+        }
+
+        if (static::isFragment($value)) {
+            return true;
+        }
+
+        if (static::isDirective($value)) {
+            return true;
+        }
+
+        if (static::isArgument($value)) {
+            return true;
+        }
+
+        return static::isVariable($value);
     }
 
     /**

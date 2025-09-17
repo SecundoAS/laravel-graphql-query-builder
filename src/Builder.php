@@ -9,7 +9,6 @@ use Illuminate\Support\Traits\Conditionable;
 use InvalidArgumentException;
 use Secundo\GraphQL\Concerns\BuildsFieldStrings;
 use Secundo\GraphQL\Concerns\ManagesFields;
-use Secundo\GraphQL\Types\Argument;
 use Secundo\GraphQL\Types\Fragment;
 use Secundo\GraphQL\Types\Variable;
 use Secundo\GraphQL\Utilities\TypeGuards;
@@ -157,7 +156,7 @@ class Builder implements Stringable
 
         $operationHeader = $this->operationType ?? 'query';
 
-        if ($this->operationName) {
+        if ($this->operationName !== null && $this->operationName !== '' && $this->operationName !== '0') {
             $operationHeader .= " {$this->operationName}";
         }
 
@@ -216,32 +215,5 @@ class Builder implements Stringable
     public function hasFragment(string $name): bool
     {
         return isset($this->fragments[$name]);
-    }
-
-    protected function addFieldsFromArray(self $builder, array $fields): void
-    {
-        foreach ($fields as $fieldData) {
-            if (is_array($fieldData) && isset($fieldData['name'])) {
-                $builder->field($fieldData['name'], $fieldData['arguments'] ?? [], null);
-                if (! empty($fieldData['fields'])) {
-                    $this->addFieldsFromArray($builder, $fieldData['fields']);
-                }
-            }
-        }
-    }
-
-    protected function createArgumentObjects(array $arguments): array
-    {
-        return Argument::collection($arguments);
-    }
-
-    protected function convertArgumentObjectsToArray(array $argumentObjects): array
-    {
-        $result = [];
-        foreach ($argumentObjects as $argument) {
-            $result[$argument->getName()] = $argument->getValue();
-        }
-
-        return $result;
     }
 }

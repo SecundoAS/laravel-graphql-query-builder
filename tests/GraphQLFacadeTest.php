@@ -12,18 +12,6 @@ use Secundo\GraphQL\GraphQLServiceProvider;
 
 class GraphQLFacadeTest extends TestCase
 {
-    protected function getPackageProviders($app): array
-    {
-        return [GraphQLServiceProvider::class];
-    }
-
-    protected function getPackageAliases($app): array
-    {
-        return [
-            'GraphQL' => GraphQL::class,
-        ];
-    }
-
     #[Test]
     public function facade_can_create_query(): void
     {
@@ -77,7 +65,7 @@ class GraphQLFacadeTest extends TestCase
         // Should have different queries
         $this->assertStringContainsString('users', $builder1->toGraphQL());
         $this->assertStringContainsString('products', $builder2->toGraphQL());
-        
+
         $this->assertStringNotContainsString('products', $builder1->toGraphQL());
         $this->assertStringNotContainsString('users', $builder2->toGraphQL());
     }
@@ -99,9 +87,9 @@ class GraphQLFacadeTest extends TestCase
             ->variable('query', 'String', 'title:test')
             ->field('products', [
                 'first' => '$first',
-                'query' => '$query'
-            ], function ($field) {
-                $field->field('edges', [], function ($field) {
+                'query' => '$query',
+            ], function ($field): void {
+                $field->field('edges', [], function ($field): void {
                     $field->field('node', [], ['id', 'title', 'handle']);
                     $field->field('cursor');
                 });
@@ -140,5 +128,17 @@ class GraphQLFacadeTest extends TestCase
         $this->assertStringContainsString('productCreate', $query2String);
         $this->assertStringNotContainsString('users', $query2String);
         $this->assertStringContainsString('mutation', $query2String);
+    }
+
+    protected function getPackageProviders($app): array
+    {
+        return [GraphQLServiceProvider::class];
+    }
+
+    protected function getPackageAliases($app): array
+    {
+        return [
+            'GraphQL' => GraphQL::class,
+        ];
     }
 }

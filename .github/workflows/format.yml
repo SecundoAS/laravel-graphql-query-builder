@@ -1,0 +1,40 @@
+name: Formatting
+
+on:
+    push:
+        paths:
+            - '**.php'
+            - 'pint.json'
+jobs:
+  laravel-pint:
+    name: Run Laravel Pint
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+            php-version: '8.2'
+            coverage: none
+
+      - name: Install composer dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: Create cache directory
+        run: mkdir -p /tmp/format
+
+      - name: Cache Rector objects
+        uses: actions/cache@v4
+        with:
+          path: /tmp/format
+          key: ${{ runner.os }}-format-${{ hashFiles('pint.json', 'rector.php', 'composer.lock') }}
+          restore-keys: ${{ runner.os }}-format-
+
+      - name: Run Laravel Pint
+        run: ./vendor/bin/pint --test --cache-file=/tmp/format/pint.json
+
+      - name: Run Rector
+        run: ./vendor/bin/rector process --dry-run --ansi

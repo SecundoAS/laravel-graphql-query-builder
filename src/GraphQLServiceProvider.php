@@ -10,9 +10,7 @@ class GraphQLServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton('graphql-query-builder', function () {
-            return new GraphQL;
-        });
+        $this->app->singleton('graphql-query-builder', fn (): GraphQL => new GraphQL);
 
         $this->app->alias('graphql-query-builder', GraphQL::class);
     }

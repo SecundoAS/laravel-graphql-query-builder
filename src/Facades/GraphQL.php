@@ -5,19 +5,20 @@ declare(strict_types=1);
 namespace Secundo\GraphQL\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use Secundo\GraphQL\Builder;
 
 /**
- * @method static \Secundo\GraphQL\Builder query(?string $name = null)
- * @method static \Secundo\GraphQL\Builder mutation(?string $name = null)
- * @method static \Secundo\GraphQL\Builder subscription(?string $name = null)
- * @method static \Secundo\GraphQL\Builder field(string $name, array $arguments = [], array|callable|null $fieldsOrCallback = null)
- * @method static \Secundo\GraphQL\Builder variable(string $name, string $type, mixed $value = null)
- * @method static \Secundo\GraphQL\Builder variables(array $variables)
- * @method static \Secundo\GraphQL\Builder fragment(string $name, string $onType, callable $callback)
+ * @method static Builder query(?string $name = null)
+ * @method static Builder mutation(?string $name = null)
+ * @method static Builder subscription(?string $name = null)
+ * @method static Builder field(string $name, array $arguments = [], array|callable|null $fieldsOrCallback = null)
+ * @method static Builder variable(string $name, string $type, mixed $value = null)
+ * @method static Builder variables(array $variables)
+ * @method static Builder fragment(string $name, string $onType, callable $callback)
  * @method static string toGraphQL()
  * @method static array getVariableValues()
  *
- * @see \Secundo\GraphQL\Builder
+ * @see Builder
  */
 class GraphQL extends Facade
 {

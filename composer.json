@@ -43,10 +43,12 @@
         }
     },
     "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "format": ["@rector", "@pint"],
+        "pint": "./vendor/bin/pint",
+        "rector": "./vendor/bin/rector process",
         "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
-        "format": "vendor/bin/pint",
-        "analyse": "vendor/bin/phpstan analyse"
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "config": {
         "sort-packages": true,

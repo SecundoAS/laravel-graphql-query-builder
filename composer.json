@@ -1,0 +1,67 @@
+{
+    "name": "secundo/laravel-graphql-query-builder",
+    "description": "A powerful and elegant GraphQL query builder for PHP, designed specifically for Laravel applications",
+    "keywords": [
+        "laravel",
+        "graphql",
+        "query-builder",
+        "api",
+        "client",
+        "shopify",
+        "graphql-client"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Einar-Johan Hansen",
+            "email": "einar@secundo.com",
+            "homepage": "https://einarhansen.dev/",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/SecundoAS/laravel-graphql-query-builder",
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^11.0|^12.0",
+        "illuminate/contracts": "^11.0|^12.0"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.7",
+        "laravel/pint": "^1.25",
+        "orchestra/testbench": "^8.0|^9.0",
+        "phpunit/phpunit": "^11.0|^12.0",
+        "rector/rector": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Secundo\\GraphQL\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Secundo\\GraphQL\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "format": "vendor/bin/pint",
+        "analyse": "vendor/bin/phpstan analyse"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Secundo\\GraphQL\\GraphQLServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

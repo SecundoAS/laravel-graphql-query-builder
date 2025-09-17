@@ -1,0 +1,43 @@
+# Composer
+/vendor/
+composer.lock
+
+# PHPUnit
+.phpunit.result.cache
+/phpunit.xml
+/coverage/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build
+/build/
+/dist/
+
+# Testing
+/tests/reports/
+/tests/coverage/
+
+# Documentation
+/docs/_build/
+
+# Cache
+.php-cs-fixer.cache
+.phpstan/
+
+# Laravel specific
+bootstrap/cache/
+storage/logs/

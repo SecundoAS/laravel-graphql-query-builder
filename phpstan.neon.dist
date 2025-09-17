@@ -1,0 +1,24 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - src/
+        - config/
+
+    # Level 9 is the highest level
+    level: 5
+
+    checkModelProperties: true
+    checkOctaneCompatibility: true
+    reportUnmatchedIgnoredErrors: false
+    noUnnecessaryCollectionCall: true
+    checkNullables: true
+    treatPhpDocTypesAsCertain: false
+
+    ignoreErrors:
+        - '#Unsafe usage of new static#'
+        - '#PHPDoc tag @var#'
+
+#    excludePaths:

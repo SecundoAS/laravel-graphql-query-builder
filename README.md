@@ -14,8 +14,6 @@ A powerful and elegant GraphQL query builder for PHP, designed specifically for 
 - **Variable Support**: Automatic variable handling with type safety
 - **Fragment Support**: Create reusable query fragments
 - **Inline Fragments**: Type-based conditional field selection
-- **Shopify Ready**: Built-in support for Shopify Admin and Storefront APIs
-- **Extensible**: Easy to extend for custom GraphQL endpoints
 
 ## Requirements
 

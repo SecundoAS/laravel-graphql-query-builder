@@ -84,22 +84,27 @@ class FieldTest extends TestCase
     public function it_can_add_string_fields(): void
     {
         $field = new Field('user');
-        $field->fields(['name', 'email', 'phone']);
+        $field->fields(['name', 'email', 'phone', new Field('handle')]);
 
         $fields = $field->getFields();
-        $this->assertCount(3, $fields);
+        $this->assertCount(4, $fields);
+        $this->assertEquals("user {\n  name\n  email\n  phone\n  handle\n}", (string) $field);
     }
 
     #[Test]
     public function it_can_add_single_field(): void
     {
         $field = new Field('user');
-        $field->field('profile', ['id' => '123'], ['name', 'avatar']);
+        $contactField = new Field('contact', [], ['name', 'email', new Field('phone')]);
+        $field->field('profile', ['id' => '123'], ['name', 'avatar', $contactField]);
 
         $fields = $field->getFields();
         $this->assertCount(1, $fields);
         $this->assertEquals('profile', $fields[0]['name']);
         $this->assertEquals(['id' => '123'], $fields[0]['arguments']);
+
+        $this->assertCount(3, $fields[0]['fields']);
+        $this->assertEquals("user {\n  profile(id: \"123\") {\n    name\n    avatar\n    contact {\n      name\n      email\n      phone\n    }\n  }\n}", (string) $field);
     }
 
     #[Test]

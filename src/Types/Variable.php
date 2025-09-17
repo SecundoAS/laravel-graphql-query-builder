@@ -104,7 +104,7 @@ class Variable implements Stringable
         $type = preg_replace('/\[([^\]]+)\]/', '$1', $type);
 
         // Remove non-null indicator
-        $type = mb_rtrim($type, '!');
+        $type = rtrim($type, '!');
 
         return $type;
     }

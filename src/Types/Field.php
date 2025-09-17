@@ -38,7 +38,7 @@ class Field implements Stringable
         $fieldArray = $this->toArray();
         $result = $this->buildFieldsString([$fieldArray], 0);
 
-        return mb_trim($result);
+        return trim($result);
     }
 
     public function alias(string $alias): static

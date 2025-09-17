@@ -44,10 +44,13 @@ class DirectiveProcessor
      */
     public static function findByName(array $directives, string $name): ?Directive
     {
-        return array_find(
-            $directives,
-            fn (Directive $directive): bool => $directive->getName() === $name
-        );
+        foreach ($directives as $directive) {
+            if ($directive->getName() === $name) {
+                return $directive;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -55,6 +58,12 @@ class DirectiveProcessor
      */
     public static function hasDirective(array $directives, string $name): bool
     {
-        return array_any($directives, fn (Directive $directive): bool => $directive->getName() === $name);
+        foreach ($directives as $directive) {
+            if ($directive->getName() === $name) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
